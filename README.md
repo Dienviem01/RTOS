@@ -112,3 +112,40 @@ void loop() {
 | **Task RTOS**                 | Fungsi terpisah yang berjalan paralel                     |
 | **vTaskDelay()**              | Pengganti `delay()` agar multitasking tetap berjalan       |
 | **xTaskCreatePinnedToCore()** | Fungsi untuk menentukan task dijalankan di core mana      |
+
+---
+
+## 🔗 Link Wokwi dan Video
+
+| No | Judul Praktikum            | Link Wokwi                                               | Link Video (Drive Shortcut)                            |
+|----|----------------------------|----------------------------------------------------------|--------------------------------------------------------|
+| 1  | Button                     | [Wokwi Project](https://wokwi.com/projects/xxxxxxxx)     | [Drive](https://drive.google.com/xxxxxxxx)             |
+| 2  | LED                        | [Wokwi Project](https://wokwi.com/projects/eeeeeeee)     | [Drive](https://drive.google.com/eeeeeeee)             |
+| 3  | Potentiometer              | [Wokwi Project](https://wokwi.com/projects/yyyyyyyy)     | [Drive](https://drive.google.com/yyyyyyyy)             |
+| 4  | Buzzer                     | [Wokwi Project](https://wokwi.com/projects/zzzzzzzz)     | [Drive](https://drive.google.com/zzzzzzzz)             |
+| 5  | Servo Motor                | [Wokwi Project](https://wokwi.com/projects/aaaaaaaa)     | [Drive](https://drive.google.com/aaaaaaaa)             |
+| 6  | Stepper Motor              | [Wokwi Project](https://wokwi.com/projects/bbbbbbbb)     | [Drive](https://drive.google.com/bbbbbbbb)             |
+| 7  | OLED Display               | [Wokwi Project](https://wokwi.com/projects/cccccccc)     | [Drive](https://drive.google.com/cccccccc)             |
+| 8  | Rotary Encoder             | [Wokwi Project](https://wokwi.com/projects/dddddddd)     | [Drive](https://drive.google.com/dddddddd)             |
+
+---
+
+## 🧪 Langkah Percobaan
+
+1. Buka **link Wokwi** sesuai praktikum yang ingin diuji.  
+2. Jalankan simulasi langsung di Wokwi.  
+3. Amati aktivitas task di **core 0** dan **core 1** melalui Serial Monitor Wokwi.  
+4. Ubah parameter seperti **delay**, **prioritas**, atau **stack size** untuk melihat efek pada eksekusi task.  
+5. Jalankan ulang simulasi dan catat perbedaan hasilnya.  
+6. Setelah simulasi berjalan dengan baik, unggah kode ke **ESP32-S3 nyata** untuk pengujian fisik.  
+7. Bandingkan hasil simulasi dan hasil nyata untuk memastikan konsistensi performa antar core.
+
+---
+
+
+## 👨‍💻 Kontributor
+
+**Nama:** Husain Anshoruddin & Muhammad Bintang Saputra 
+**NIM:** 3223600020 & 3223600023 
+**Topik:** Praktikum FreeRTOS dengan ESP32-S3  
+**Kampus:** Politeknik Elektronika Negeri Surabaya
