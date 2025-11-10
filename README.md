@@ -117,16 +117,16 @@ void loop() {
 
 ## 🔗 Link Wokwi dan Video
 
-| No | Judul Praktikum            | Link Wokwi                                               | Link Video (Drive Shortcut)                            |
-|----|----------------------------|----------------------------------------------------------|--------------------------------------------------------|
-| 1  | Button                     | [Wokwi Project](https://wokwi.com/projects/xxxxxxxx)     | [Drive](https://drive.google.com/xxxxxxxx)             |
-| 2  | LED                        | [Wokwi Project](https://wokwi.com/projects/eeeeeeee)     | [Drive](https://drive.google.com/eeeeeeee)             |
-| 3  | Potentiometer              | [Wokwi Project](https://wokwi.com/projects/yyyyyyyy)     | [Drive](https://drive.google.com/yyyyyyyy)             |
-| 4  | Buzzer                     | [Wokwi Project](https://wokwi.com/projects/zzzzzzzz)     | [Drive](https://drive.google.com/zzzzzzzz)             |
-| 5  | Servo Motor                | [Wokwi Project](https://wokwi.com/projects/aaaaaaaa)     | [Drive](https://drive.google.com/aaaaaaaa)             |
-| 6  | Stepper Motor              | [Wokwi Project](https://wokwi.com/projects/bbbbbbbb)     | [Drive](https://drive.google.com/bbbbbbbb)             |
-| 7  | OLED Display               | [Wokwi Project](https://wokwi.com/projects/cccccccc)     | [Drive](https://drive.google.com/cccccccc)             |
-| 8  | Rotary Encoder             | [Wokwi Project](https://wokwi.com/projects/dddddddd)     | [Drive](https://drive.google.com/dddddddd)             |
+| No | Judul Praktikum            | Link Wokwi                                                         | Link Video (Drive Shortcut)                            |
+|----|----------------------------|--------------------------------------------------------------------|--------------------------------------------------------|
+| 1  | Button                     | [Wokwi Project](https://wokwi.com/projects/447244574109811713)     | [Drive](https://drive.google.com/xxxxxxxx)             |
+| 2  | LED                        | [Wokwi Project](https://wokwi.com/projects/447245467456890881)     | [Drive](https://drive.google.com/eeeeeeee)             |
+| 3  | Potentiometer              | [Wokwi Project](https://wokwi.com/projects/447251511213579265)     | [Drive](https://drive.google.com/yyyyyyyy)             |
+| 4  | Buzzer                     | [Wokwi Project](https://wokwi.com/projects/447247199660893185)     | [Drive](https://drive.google.com/zzzzzzzz)             |
+| 5  | Servo Motor                | [Wokwi Project](https://wokwi.com/projects/447252879958924289)     | [Drive](https://drive.google.com/aaaaaaaa)             |
+| 6  | Stepper Motor              | [Wokwi Project](https://wokwi.com/projects/447251511213579265)     | [Drive](https://drive.google.com/bbbbbbbb)             |
+| 7  | OLED Display               | [Wokwi Project](https://wokwi.com/projects/447239534357789697)     | [Drive](https://drive.google.com/cccccccc)             |
+| 8  | Rotary Encoder             | [Wokwi Project](https://wokwi.com/projects/447247992356260865)     | [Drive](https://drive.google.com/dddddddd)             |
 
 ---
 
