@@ -145,7 +145,10 @@ void loop() {
 
 ## 👨‍💻 Kontributor
 
-**Nama:** Husain Anshoruddin & Muhammad Bintang Saputra 
-**NIM:** 3223600020 & 3223600023 
-**Topik:** Praktikum FreeRTOS dengan ESP32-S3  
+**Nama:** Husain Anshoruddin & Muhammad Bintang Saputra
+
+**NIM:** 3223600020 & 3223600023
+
+**Topik:** Praktikum FreeRTOS dengan ESP32-S3
+
 **Kampus:** Politeknik Elektronika Negeri Surabaya
