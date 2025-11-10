@@ -50,7 +50,8 @@ Gunakan `vTaskDelay()` sebagai pengganti `delay()` agar scheduler bisa mengatur 
 
 FreeRTOS pada ESP32 memungkinkan kamu menjalankan task di core tertentu menggunakan fungsi:
 
-</pre>```xTaskCreatePinnedToCore(
+</pre>```
+xTaskCreatePinnedToCore(
   taskFunction,    // Fungsi task yang akan dijalankan
   "TaskName",      // Nama task
   stackSize,       // Ukuran stack (biasanya 4096 atau 10000)
