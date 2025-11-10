@@ -1,56 +1,59 @@
-**Praktikum Real Time Operating System (RTOS) dengan ESP32-S3**
+# Praktikum Real Time Operating System (RTOS) dengan ESP32-S3
 
-Repository ini berisi beberapa contoh praktikum RTOS pada ESP32-S3, seperti Button, LED, Buzzer, OLED, Potentiometer, Servo, dan Stepper.
-Fokus utama adalah bagaimana cara membagi pekerjaan ke dua core (core 0 dan core 1) menggunakan FreeRTOS di Arduino ESP32.
+Repository ini berisi beberapa contoh praktikum RTOS pada **ESP32-S3**, seperti **Button**, **LED**, **Buzzer**, **OLED**, **Potentiometer**, **Servo**, dan **Stepper**.  
+Fokus utama adalah bagaimana cara membagi pekerjaan ke dua core (**core 0** dan **core 1**) menggunakan **FreeRTOS** di Arduino ESP32.
 
-⚙️ **Perbedaan Core 0 dan Core 1 di ESP32**
+---
 
-ESP32 memiliki dua inti prosesor (dual-core) yang bisa bekerja secara paralel.
+## ⚙️ Perbedaan Core 0 dan Core 1 di ESP32
 
-Core 0
+ESP32 memiliki dua inti prosesor (**dual-core**) yang dapat bekerja secara paralel.
 
-Digunakan oleh sistem dan proses latar belakang seperti WiFi, Bluetooth, dan task internal ESP-IDF.
+- **Core 0**  
+  Digunakan oleh sistem dan proses latar belakang seperti WiFi, Bluetooth, dan task internal ESP-IDF.
 
-Core 1
+- **Core 1**  
+  Menjalankan kode utama pengguna (fungsi `setup()` dan `loop()`) saat program diunggah melalui Arduino IDE.
 
-Menjalankan kode utama pengguna (fungsi `setup()` dan `loop()`) saat program diunggah dari Arduino IDE.
+Dalam proyek ini, kedua core digunakan untuk menjalankan task yang berbeda agar sistem bekerja secara paralel. Contohnya:
 
-Dalam proyek ini, kedua core digunakan untuk menjalankan task yang berbeda agar sistem berjalan paralel, misalnya:
+- **Core 0**: Membaca input dari potensiometer atau tombol dan menampilkan hasil ke OLED pertama.  
+- **Core 1**: Mengontrol perangkat lain seperti servo, stepper, atau OLED kedua.
 
-Core 0: Membaca input dari potensiometer atau tombol dan menampilkan hasilnya ke OLED pertama.
+---
 
-Core 1: Mengontrol perangkat lain seperti servo, stepper, atau OLED kedua.
+## 🧠 Ciri Khas Program FreeRTOS di Repository Ini
 
-**🧠 Ciri Khas Program FreeRTOS di Repository Ini**
-
-Program dalam repo ini menggunakan FreeRTOS, sistem operasi real-time bawaan ESP32.
+Program dalam repository ini menggunakan **FreeRTOS**, sistem operasi real-time bawaan dari ESP32.  
 Berikut beberapa ciri khasnya:
 
-1. Struktur Fungsi Task
+---
+
+### 1. Struktur Fungsi Task
 
 Setiap task ditulis dalam bentuk fungsi seperti ini:
 
-</pre>```void core0Task(void *pvParameters) {
+```cpp
+void core0Task(void *pvParameters) {
   for (;;) {
     // Kode yang berjalan terus di core 0
     vTaskDelay(100 / portTICK_PERIOD_MS);
   }
-}``` </pre>
+}
+```
 
+**Ciri khasnya:**
+- Menggunakan `void *pvParameters` sebagai parameter.  
+- Loop tanpa akhir `for(;;)` atau `while(true)` menandakan ini adalah **task RTOS**, bukan fungsi biasa.  
+- Menggunakan `vTaskDelay()` sebagai pengganti `delay()` agar scheduler bisa mengatur task lain.
 
-Ciri khasnya:
+---
 
-Menggunakan void *pvParameters sebagai parameter.
+### 2. Mengatur Task di Core Tertentu
 
-Loop tanpa akhir `for(;;)` atau `while(true)` ini menandakan task RTOS, bukan fungsi biasa.
+FreeRTOS pada ESP32 memungkinkan menjalankan task di core tertentu menggunakan fungsi berikut:
 
-Gunakan `vTaskDelay()` sebagai pengganti `delay()` agar scheduler bisa mengatur task lain.
-
-2. Mengatur Task di Core Tertentu
-
-FreeRTOS pada ESP32 memungkinkan kamu menjalankan task di core tertentu menggunakan fungsi:
-
-</pre>```
+```cpp
 xTaskCreatePinnedToCore(
   taskFunction,    // Fungsi task yang akan dijalankan
   "TaskName",      // Nama task
@@ -59,45 +62,53 @@ xTaskCreatePinnedToCore(
   priority,        // Prioritas task (1 = normal)
   handle,          // Handle task (NULL jika tidak diperlukan)
   coreID           // Nomor core: 0 atau 1
-);``` </pre>
+);
+```
 
+**Contoh penggunaan di repository ini:**
 
-Contoh penggunaannya di repo ini:
+```cpp
+xTaskCreatePinnedToCore(core0Task, "Core0Task", 10000, NULL, 1, NULL, 0);
+xTaskCreatePinnedToCore(core1Task, "Core1Task", 10000, NULL, 1, NULL, 1);
+```
 
-`xTaskCreatePinnedToCore(core0Task, "Core0Task", 10000, NULL, 1, NULL, 0);`
-`xTaskCreatePinnedToCore(core1Task, "Core1Task", 10000, NULL, 1, NULL, 1);`
+**Artinya:**
+- Task `core0Task` dijalankan di **core 0**.  
+- Task `core1Task` dijalankan di **core 1**.
 
+---
 
-Artinya:
+### 3. Fungsi vTaskDelay()
 
-Task core0Task dijalankan di core 0.
+Berbeda dengan `delay()`, fungsi ini menunda task **tanpa menghentikan seluruh prosesor**:
 
-Task core1Task dijalankan di core 1.
+```cpp
+vTaskDelay(100 / portTICK_PERIOD_MS);
+```
 
-3. Fungsi vTaskDelay()
+Artinya task akan “tidur” selama 100 ms dan memberikan waktu bagi scheduler untuk menjalankan task lain di core yang sama atau berbeda.
 
-Berbeda dengan `delay()`, fungsi ini menunda task tanpa menghentikan seluruh prosesor.
-Contoh:
+---
 
-`vTaskDelay(100 / portTICK_PERIOD_MS);`
+### 4. Loop() Kosong
 
+Karena semua proses utama sudah dijalankan di task RTOS, bagian `loop()` biasanya dibiarkan kosong:
 
-Artinya task akan “tidur” selama 100 ms dan memberi kesempatan scheduler menjalankan task lain.
-
-4. Loop() Kosong
-
-Karena semua proses utama sudah berjalan di task RTOS, bagian loop() biasanya dibiarkan kosong:
-
-</pre>```void loop() {
+```cpp
+void loop() {
   // Kosong, semua kerja dilakukan di task RTOS
-}``` </pre>
+}
+```
 
-+ Ringkasan
+---
+
+## 🧩 Ringkasan
+
 | Konsep                        | Keterangan                                                |
 | ----------------------------- | --------------------------------------------------------- |
 | **Core 0**                    | Digunakan untuk task sistem dan background                |
 | **Core 1**                    | Default core tempat `loop()` dan kode pengguna dijalankan |
 | **FreeRTOS**                  | Sistem operasi real-time bawaan ESP32                     |
 | **Task RTOS**                 | Fungsi terpisah yang berjalan paralel                     |
-| **vTaskDelay()**              | Pengganti `delay()` agar multitasking tetap jalan         |
+| **vTaskDelay()**              | Pengganti `delay()` agar multitasking tetap berjalan       |
 | **xTaskCreatePinnedToCore()** | Fungsi untuk menentukan task dijalankan di core mana      |
